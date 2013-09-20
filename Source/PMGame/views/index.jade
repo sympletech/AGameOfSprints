@@ -1,0 +1,22 @@
+doctype 5
+html(ng-app, ng-controller='NavigationController')
+    head
+        title A Game of Sprints | # {{title}}
+        link(rel='stylesheet', href='/libraries/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='libraries/bootstrap/css/bootstrap-theme.min.css')
+        link(rel='stylesheet', href='/css/style.css')
+
+    body
+        nav.navbar.navbar-default(role='navigation', )
+            div.navbar-header
+                a.navbar-brand(href='/') A Game of Sprints
+                ul.nav.navbar-nav
+                    li(ng-repeat="navOpt in navigationOptions", ng-class="getNavigationClass(navOpt.link)")
+                        a(ng-click='navigateTo(navOpt.link)') {{navOpt.title}}
+
+        div(ng-bind-html-unsafe='currentPageContent')
+
+    script(type='text/javascript', src='/libraries/jquery/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/libraries/angular/angular.min.js')
+    script(type='text/javascript', src='/libraries/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='/js/layout.js')
