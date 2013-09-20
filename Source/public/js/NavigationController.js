@@ -4,7 +4,7 @@ function NavigationController($scope, $http, $location){
         {title : 'Team Room', link : 'TeamRoom'},
     ];
 
-    $scope.currentPage = "#ProjectStatus";
+    $scope.currentPage = $location.hash() ? $location.hash() : 'homePage';
     $scope.getNavigationClass = function(navLink){
         return navLink === $scope.currentPage ? 'active' : '';
     }
@@ -17,5 +17,5 @@ function NavigationController($scope, $http, $location){
         });
     }
 
-    $scope.currentPageContent = $scope.navigateTo($location.hash() ? $location.hash() : 'homePage');
+    $scope.currentPageContent = $scope.navigateTo($scope.currentPage);
 }
