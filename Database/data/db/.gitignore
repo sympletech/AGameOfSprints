@@ -1,0 +1,10 @@
+/local.ns
+/mongod.lock
+/test.0
+/test.1
+/test.ns
+
+/local.0
+/journal
+
+/_tmp

@@ -1,21 +1,18 @@
 var db = function(){
-    var self = this;
+    var self = this,
+        mongoose = require('mongoose'),
+        fs = require('fs');
 
-    self.mongoose = require('mongoose');
-    self.mongoose.connect('mongodb://localhost/test');
+    self.connectionString = 'mongodb://localhost/test';
+    mongoose.connect(self.connectionString);
 
-
-    self.connect = function(onConnected){
-
-
+    mongoose.connect = function(){
         var conn = self.mongoose.connection;
         conn.on('error', console.error.bind(console, 'connection error:'));
-        conn.once('open', function(){
-            onConnected();
-        });
     };
 
-
+    //Models
+    self.userAccountModel = require('./dbModels/userAccountModel.js');
 
 
 };

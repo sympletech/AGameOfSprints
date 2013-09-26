@@ -1,13 +1,15 @@
 {
-  "name": "A Game Of Sprints",
+  "name": "AGameOfSprints",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.0",
-    "jade": "*",
-    "mongoose" : "*"
+      "better-assert" : "*",
+      "express": "3.4.0",
+      "jade": "*",
+      "mocha" : "*",
+      "mongoose" : "*"
   }
 }

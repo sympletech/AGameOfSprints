@@ -1,12 +1,10 @@
 describe('userlib Tests', function(){
     var userlib = require('../userlib');
-    var assert = require('assert');
+    var assert = require('better-assert');
 
     describe('CreateAccount Tests', function(){
 
         it('should create a new account', function(done){
-//            userlib.kittyTest(done);
-
             var newAccount = {
                 username : 'testUser',
                 password : '12345',
@@ -17,13 +15,10 @@ describe('userlib Tests', function(){
             };
 
             userlib.CreateAccount(newAccount, function(err, newAccount){
-                assert.notEqual(newAccount._id, null, 'hello');
+                assert(newAccount._id !== null);
                 done(err);
             });
-
         });
-
-
     });
 
 });
