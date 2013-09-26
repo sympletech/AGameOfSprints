@@ -14,8 +14,8 @@ describe('userlib Tests', function(){
                 active : true
             };
 
-            userlib.CreateAccount(newAccount, function(err, newAccount){
-                assert(newAccount._id !== null);
+            userlib.CreateAccount(newAccount, function(err, newAccount, message){
+                assert(message === 'Account Created Successfully');
                 userlib.DeleteUserAccount(newAccount._id, function(err, found){
                     assert(found);
                     done(err);

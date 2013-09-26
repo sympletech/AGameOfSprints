@@ -8,6 +8,8 @@ html(ng-app, ng-controller='NavigationController')
 
     body
         nav.navbar.navbar-default(role='navigation', )
+            div.pull-right.header-cur-user
+                button.btn.btn-primary(ng-click='LoadLoginPage()') Log In
             div.navbar-header
                 a.navbar-brand(href='/') A Game of Sprints
                 ul.nav.navbar-nav
@@ -19,4 +21,4 @@ html(ng-app, ng-controller='NavigationController')
     script(type='text/javascript', src='/libraries/jquery/jquery-2.0.3.min.js')
     script(type='text/javascript', src='/libraries/angular/angular.min.js')
     script(type='text/javascript', src='/libraries/bootstrap/js/bootstrap.min.js')
-    script(type='text/javascript', src='/js/layout.js')
+    script(type='text/javascript', src='/js/navigationController.js')

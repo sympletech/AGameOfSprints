@@ -29,10 +29,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//Routing Table
 app.get('/', routes.index);
 app.get('/homePage', routes.homePage);
 app.get('/projectStatus', routes.projectStatus);
 app.get('/teamRoom', routes.teamRoom);
+app.get('/login', routes.login);
 
 
 http.createServer(app).listen(app.get('port'), function(){

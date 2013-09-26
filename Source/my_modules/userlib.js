@@ -4,12 +4,26 @@ var userlib = function(){
         cryptools = require('cryptools');
 
     self.CreateAccount = function(accountSettings, done){
-        accountSettings.password = cryptools.sha256(accountSettings.password);
 
-        var newAccount = db.userAccountModel(accountSettings);
-        newAccount.save(function(err, newAccount){
-            done(err, newAccount);
-        });
+        var accountLookup = db.userAccountModel
+            .findOne({
+                'emailAddress' : accountSettings.emailAddress,
+                'active'   : true},
+            function(err, account){
+                var accountExists = account != null;
+                if(accountExists){
+                    done(err, account, 'Account Already Exists For : ' + accountSettings.emailAddress);
+                }else{
+                    accountSettings.password = cryptools.sha256(accountSettings.password);
+
+                    var newAccount = db.userAccountModel(accountSettings);
+                    newAccount.save(function(err, newAccount){
+                        done(err, newAccount, 'Account Created Successfully');
+                    });
+                }
+            });
+
+
     };
 
     self.AuthenticateUser = function(username, password, done){

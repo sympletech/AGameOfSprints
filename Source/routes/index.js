@@ -13,3 +13,7 @@ exports.projectStatus = function(req, res){
 exports.teamRoom = function(req, res){
     res.render('teamRoom');
 };
+
+exports.login = function(req, res){
+    res.render('login');
+};
