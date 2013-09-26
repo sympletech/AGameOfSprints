@@ -1,1 +1,24 @@
-h1 Login Page
+div.container
+    div.row
+        div.col-sm-3
+        div.col-sm-6
+            div.well
+                h3 Please Login
+                form.form-horizontal(role="form")
+                    div.form-group
+                        label.col-sm-3.control-label(for="Username") Username
+                        div.col-sm-9
+                            input.form-control(id="Username",type="text",placeholder="Enter Username")
+                    div.form-group
+                        label.col-sm-3.control-label(for="Password") Password
+                        div.col-sm-9
+                            input.form-control(id="Password",type="password",placeholder="Enter Password")
+                    div.form-group
+                        div.col-sm-4
+                        div.col-sm-8.checkbox
+                            label
+                                input(type="checkbox")
+                                span Remember Me
+                            div.pull-right
+                                button.btn.btn-primary Log In
+

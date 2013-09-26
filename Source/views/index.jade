@@ -1,7 +1,7 @@
 doctype 5
 html(ng-app, ng-controller='NavigationController')
     head
-        title A Game of Sprints | # {{title}}
+        title A Game of Sprints
         link(rel='stylesheet', href='/libraries/bootstrap/css/bootstrap.min.css')
         link(rel='stylesheet', href='libraries/bootstrap/css/bootstrap-theme.min.css')
         link(rel='stylesheet', href='/css/style.css')
@@ -9,7 +9,7 @@ html(ng-app, ng-controller='NavigationController')
     body
         nav.navbar.navbar-default(role='navigation', )
             div.pull-right.header-cur-user
-                button.btn.btn-primary(ng-click='LoadLoginPage()') Log In
+                button.btn.btn-primary(ng-click='navigateTo("Login")') Log In To Play
             div.navbar-header
                 a.navbar-brand(href='/') A Game of Sprints
                 ul.nav.navbar-nav
@@ -19,6 +19,7 @@ html(ng-app, ng-controller='NavigationController')
         div(ng-bind-html-unsafe='currentPageContent')
 
     script(type='text/javascript', src='/libraries/jquery/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='/libraries/underscore/underscore-min.js')
     script(type='text/javascript', src='/libraries/angular/angular.min.js')
     script(type='text/javascript', src='/libraries/bootstrap/js/bootstrap.min.js')
     script(type='text/javascript', src='/js/navigationController.js')
