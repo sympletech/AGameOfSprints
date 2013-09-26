@@ -7,6 +7,7 @@
   },
   "dependencies": {
       "better-assert" : "*",
+      "cryptools" : "*",
       "express": "3.4.0",
       "jade": "*",
       "mocha" : "*",
