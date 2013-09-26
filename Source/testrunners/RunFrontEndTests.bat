@@ -1,2 +1,1 @@
-karma start my.conf.js
-pause >nul
+karma start ../my.conf.js

@@ -8,6 +8,9 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
+
 var app = express();
 
 // all environments
