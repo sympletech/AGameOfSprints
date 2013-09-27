@@ -4,12 +4,10 @@ var db = function(){
         fs = require('fs');
 
     self.connectionString = 'mongodb://localhost/test';
+    mongoose.connection.on('error', function(err) {
+        console.log('Connection Error : ' + err);
+    });
     mongoose.connect(self.connectionString);
-
-    mongoose.connect = function(){
-        var conn = self.mongoose.connection;
-        conn.on('error', console.error.bind(console, 'connection error:'));
-    };
 
     //Models
     self.userAccountModel = require('./dbModels/userAccountModel.js');

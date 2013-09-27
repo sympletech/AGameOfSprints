@@ -23,8 +23,4 @@ function NavigationController($scope, $http, $location){
 
     //Load Home Page on initial Pass
     $scope.currentPageContent = $scope.navigateTo($scope.currentPage);
-
-    $scope.LoadLoginPage = function(){
-        $scope.navigateTo('login');
-    };
 }

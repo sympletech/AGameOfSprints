@@ -31,10 +31,22 @@ var userlib = function(){
         var accountLookup = db.userAccountModel
             .findOne({
                 'username' : username,
-                'password' : password,
                 'active'   : true},
             function(err, account){
-                done(err, account != null);
+                var message = '',
+                    success = false,
+                    accountExists = account != null;
+
+                if(!accountExists){
+                    message = 'No Account Found For Username';
+                }else{
+                    success = account.password === password;
+                    if(!success){
+                        message = 'Invalid Password';
+                    }
+                }
+
+                done(err, success, message);
 
             });
     };

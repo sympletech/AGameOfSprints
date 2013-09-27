@@ -1,24 +1,39 @@
-div.container
+div.container(id="loginWrapper",ng-controller='LoginController')
     div.row
         div.col-sm-3
         div.col-sm-6
+            ul.nav.nav-tabs.hidden
+                li.active
+                    a(href="#login") Login
+                li
+                    a(href="#CreateAccount") Create Account
+            div.tab-content.hidden
+                div.tab-pane.active(id="login") Login Pane
+                div.tab-pane(id="CreateAccount") Create Account
+
+
+
+
             div.well
                 h3 Please Login
                 form.form-horizontal(role="form")
                     div.form-group
-                        label.col-sm-3.control-label(for="Username") Username
+                        label.col-sm-3.control-label Username
                         div.col-sm-9
-                            input.form-control(id="Username",type="text",placeholder="Enter Username")
+                            input.form-control(ng-model="loginInfo.username",type="text",placeholder="Enter Username")
                     div.form-group
-                        label.col-sm-3.control-label(for="Password") Password
+                        label.col-sm-3.control-label Password
                         div.col-sm-9
-                            input.form-control(id="Password",type="password",placeholder="Enter Password")
+                            input.form-control(ng-model="loginInfo.password",type="password",placeholder="Enter Password")
                     div.form-group
                         div.col-sm-4
                         div.col-sm-8.checkbox
                             label
-                                input(type="checkbox")
+                                input(ng-model="loginInfo.rememberMe", type="checkbox")
                                 span Remember Me
                             div.pull-right
-                                button.btn.btn-primary Log In
+                                button.btn.btn-primary(ng-click="attemptLogin()") Log In
+                    div.alert.alert-danger(ng-cloak, ng-show="failedLogin") {{failedLoginMessage}}
 
+
+script(type='text/javascript', src='/js/loginController.js')
