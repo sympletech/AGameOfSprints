@@ -1,9 +1,10 @@
 var db = function(){
     var self = this,
         mongoose = require('mongoose'),
-        fs = require('fs');
+        fs = require('fs'),
+        settings = require('../settings');
 
-    self.connectionString = 'mongodb://localhost/test';
+    self.connectionString = settings.databasepath;
     mongoose.connection.on('error', function(err) {
         console.log('Connection Error : ' + err);
     });

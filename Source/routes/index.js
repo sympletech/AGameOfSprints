@@ -1,11 +1,25 @@
 var routes = function () {
     var self = this;
 
+    self.RegisterAppRoutes = function (app) {
+        app.RegisterPage('/', 'index');
+        app.RegisterPage('/homePage', 'homePage');
+        app.RegisterPage('/projectStatus', 'projectStatus', true);
+        app.RegisterPage('/teamRoom', 'teamRoom', true);
+
+        require('./loginRoutes')(app);
+    };
+
+
     self.DefineRoutingTemplates = function (app) {
 
-        app.RegisterPage = function (path, viewname, viewmodel) {
+        app.RegisterPage = function (path, viewname, secured) {
             app.get(path, function (req, res) {
-                res.render(viewname, viewmodel);
+                if(secured && !req.session.currentUser){
+                    res.render('noaccess');
+                }else{
+                    res.render(viewname);
+                }
             });
         };
 
@@ -40,15 +54,7 @@ var routes = function () {
     };
 
 
-    self.RegisterAppRoutes = function (app) {
-        app.RegisterPage('/', 'index');
-        app.RegisterPage('/homePage', 'homePage');
-        app.RegisterPage('/projectStatus', 'projectStatus');
-        app.RegisterPage('/teamRoom', 'teamRoom');
-        //app.RegisterPage('/login', 'login');
 
-        require('./loginRoutes')(app);
-    }
 };
 
 module.exports = new routes();

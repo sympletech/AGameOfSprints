@@ -4,25 +4,55 @@ var userlib = function(){
         cryptools = require('cryptools');
 
     self.CreateAccount = function(accountSettings, done){
+        var success = false,
+            message = '';
 
-        var accountLookup = db.userAccountModel
-            .findOne({
-                'emailAddress' : accountSettings.emailAddress,
-                'active'   : true},
-            function(err, account){
-                var accountExists = account != null;
-                if(accountExists){
-                    done(err, account, 'Account Already Exists For : ' + accountSettings.emailAddress);
-                }else{
-                    accountSettings.password = cryptools.sha256(accountSettings.password);
+        var CheckForExistingEmail = function(nextStep){
+            var accountLookup = db.userAccountModel
+                .findOne({
+                    'emailAddress' : accountSettings.emailAddress,
+                    'active'   : true},
+                function(err, account){
+                    if(account !== null){
+                        message = 'Account Already Exists For : ' + accountSettings.emailAddress;
+                        done(err, account, success, message);
+                    }else{
+                        nextStep();
+                    }
+                });
+        };
 
-                    var newAccount = db.userAccountModel(accountSettings);
-                    newAccount.save(function(err, newAccount){
-                        done(err, newAccount, 'Account Created Successfully');
-                    });
-                }
+        var CheckForExistingUserName = function(nextStep){
+            var accountLookup = db.userAccountModel
+                .findOne({
+                    'username' : accountSettings.username,
+                    'active'   : true},
+                function(err, account){
+                    if(account !== null){
+                        message = 'Username is Already In Use.';
+                        done(err, account, success, message);
+                    }else{
+                        nextStep();
+                    }
+                });
+        };
+
+        var CreateAccount = function(){
+            accountSettings.password = cryptools.sha256(accountSettings.password);
+
+            var newAccount = db.userAccountModel(accountSettings);
+            newAccount.active = true;
+
+            newAccount.save(function(err, newAccount){
+                done(err, newAccount, true, 'Account Created Successfully');
             });
+        }
 
+        CheckForExistingEmail(function(){
+            CheckForExistingUserName(function(){
+                CreateAccount();
+            });
+        });
 
     };
 
@@ -46,7 +76,7 @@ var userlib = function(){
                     }
                 }
 
-                done(err, success, message);
+                done(err, success, message, account);
 
             });
     };

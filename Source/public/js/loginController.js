@@ -1,23 +1,51 @@
 function LoginController($scope, $http){
+
+    //Login Info Section
+    //**********************************************
     $scope.loginInfo = {
-        username : 'hello',
-        password : '123456',
+        username : '',
+        password : '',
         rememberMe : true
     };
 
-
+    $scope.loginResponse = {
+        failedLogin: false,
+        failedLoginMessage: ''
+    };
 
     $scope.attemptLogin = function(){
         $http.post('login/Authenticate', $scope.loginInfo).success(function(data){
             if(!data.isValid){
-                $scope.failedLogin = true;
-                $scope.failedLoginMessage = data.message;
+                $scope.loginResponse.failedLogin = true;
+                $scope.loginResponse.failedLoginMessage = data.message;
             }
         });
     };
 
-    $scope.failedLogin = false;
-    $scope.failedLoginMessage = '';
+    //Create Account Section
+    //**********************************************
+    $scope.accountDetails = {
+        username : '',
+        password : '',
+        firstName : '',
+        lastName : '',
+        emailAddress : ''
+    };
+
+    $scope.createAccountResponse = {
+        show : false,
+        success : false,
+        message : ''
+    };
+
+    $scope.SubmitNewAccountInfo = function(accountDetails){
+        $http.post('login/CreateAccount', accountDetails).success(function(data){
+            $scope.createAccountResponse.show = true;
+            $scope.createAccountResponse.success = data.success;
+            $scope.createAccountResponse.message = data.message;
+            $scope.createAccountResponse.message = data.message;
+        });
+    };
 }
 
 //Register Controller
