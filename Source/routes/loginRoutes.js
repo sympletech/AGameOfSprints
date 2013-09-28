@@ -4,10 +4,8 @@ var loginRoutes = function(app){
     app.RegisterPage('/login', 'login/loginScreen');
 
     app.RegisterRestEndPoint({
-        path : '/login/Authenticate',
+        path : '/login',
         post : function(req, res){
-            console.log(req.session.currentUser);
-
             userLib.AuthenticateUser(req.body.username, req.body.password, function(err, isValid, message, account){
                 req.session.currentUser = isValid ? account._doc : null;
 
@@ -15,8 +13,6 @@ var loginRoutes = function(app){
                     isValid : isValid,
                     message : message
                 });
-
-                console.log(req.session.currentUser);
             });
         }
     });

@@ -1,4 +1,4 @@
-function LoginController($scope, $http){
+function LoginController($scope, $http, $rootScope){
 
     //Login Info Section
     //**********************************************
@@ -14,10 +14,14 @@ function LoginController($scope, $http){
     };
 
     $scope.attemptLogin = function(){
-        $http.post('login/Authenticate', $scope.loginInfo).success(function(data){
+
+        $http.post('login', $scope.loginInfo).success(function(data){
             if(!data.isValid){
                 $scope.loginResponse.failedLogin = true;
                 $scope.loginResponse.failedLoginMessage = data.message;
+            }else{
+                amplify.publish(global.event.userSessionStateChanged);
+                amplify.publish(global.event.userLoggedIn);
             }
         });
     };
@@ -48,8 +52,8 @@ function LoginController($scope, $http){
     };
 }
 
+
 //Register Controller
-angular.element('#loginWrapper').ready(function() {
-    angular.module('AGameOfSprints', []);
-    angular.bootstrap('#loginWrapper', ['AGameOfSprints']);
+angular.element('#loginWrapper').ready(function(){
+    angular.bootstrap('#loginWrapper', ['messaging']);
 });

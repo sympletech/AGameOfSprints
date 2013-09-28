@@ -4,10 +4,15 @@ var routes = function () {
     self.RegisterAppRoutes = function (app) {
         app.RegisterPage('/', 'index');
         app.RegisterPage('/homePage', 'homePage');
+
+        app.RegisterPage('/visitor/about', 'about');
+        app.RegisterPage('/visitor/rules', 'rules');
+
         app.RegisterPage('/projectStatus', 'projectStatus', true);
         app.RegisterPage('/teamRoom', 'teamRoom', true);
 
         require('./loginRoutes')(app);
+        require('./sessionRoutes')(app);
     };
 
 

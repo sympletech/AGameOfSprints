@@ -9,7 +9,14 @@ html(ng-app, ng-controller='NavigationController')
     body
         nav.navbar.navbar-default(role='navigation', )
             div.pull-right.header-cur-user
-                button.btn.btn-primary(ng-click='navigateTo("Login")') Log In To Play
+                div(ng-cloak,ng-show="currentUser")
+                    button.btn.btn-danger.pull-right(ng-click="logOut()") Log Out
+                    div.pull-right
+                        div.text-right {{currentUser.lastName}},{{currentUser.firstName}} ({{currentUser.username}})
+                        div.text-right {{currentUser.emailAddress}}
+
+                button.btn.btn-primary(ng-cloak,ng-hide="currentUser", ng-click='navigateTo("Login")') Log In To Play
+
             div.navbar-header
                 a.navbar-brand(href='/') A Game of Sprints
                 ul.nav.navbar-nav
@@ -18,8 +25,13 @@ html(ng-app, ng-controller='NavigationController')
 
         div(ng-bind-html-unsafe='currentPageContent')
 
+
     script(type='text/javascript', src='/libraries/jquery/jquery-2.0.3.min.js')
     script(type='text/javascript', src='/libraries/underscore/underscore-min.js')
     script(type='text/javascript', src='/libraries/angular/angular.min.js')
+    script(type='text/javascript', src='/libraries/pubSub/MessagingServices.js')
     script(type='text/javascript', src='/libraries/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='/libraries/amplify/amplify.min.js')
+
+    script(type='text/javascript', src='/js/global.js')
     script(type='text/javascript', src='/js/navigationController.js')

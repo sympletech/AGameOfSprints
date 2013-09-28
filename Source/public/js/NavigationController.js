@@ -1,8 +1,7 @@
-function NavigationController($scope, $http, $location){
-    $scope.navigationOptions = [
-        {title : 'Project Status', link : 'ProjectStatus'},
-        {title : 'Team Room', link : 'TeamRoom'}
-    ];
+function NavigationController($scope, $http, $location, $rootScope){
+
+    $scope.navigationOptions = [];
+    $scope.currentUser = {};
 
     //Get current page from querystring or default to homepage
     $scope.currentPage = $location.hash() ? $location.hash() : 'homePage';
@@ -23,4 +22,30 @@ function NavigationController($scope, $http, $location){
 
     //Load Home Page on initial Pass
     $scope.currentPageContent = $scope.navigateTo($scope.currentPage);
+
+    $scope.loadCurrentSession = function(){
+        $http.get('/Session').success(function (data) {
+            $scope.navigationOptions = data.navigation;
+            $scope.currentUser = data.currentUser;
+        });
+    };
+    $scope.loadCurrentSession();
+
+
+    $scope.logOut = function(){
+        $http.delete('/Session').success(function (){
+            amplify.publish(global.event.userSessionStateChanged);
+            $scope.navigateTo("Login");
+        });
+    };
+
+    //External Event Subscriptions
+    //****************************************************************
+    amplify.subscribe(global.event.userSessionStateChanged, function(){
+        $scope.loadCurrentSession();
+    });
+
+    amplify.subscribe(global.event.userLoggedIn, function(){
+        $scope.navigateTo("TeamRoom");
+    });
 }
