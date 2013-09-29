@@ -11,7 +11,10 @@ var db = function(){
     mongoose.connect(self.connectionString);
 
     //Models
-    self.userAccountModel = require('./dbModels/userAccountModel.js');
+    self.userAccountModel = require('./dbModels/userAccountModel');
+    self.teamModel = require('./dbModels/teamModel');
+    self.teamMemberModel = require('./dbModels/teamMemberModel');
+    self.teamMemberCategoryModel = require('./dbModels/teamMemberCategoryModel');
 
 
 };

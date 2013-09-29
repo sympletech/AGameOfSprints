@@ -1,4 +1,4 @@
-var userlib = function(){
+var userLib = function(){
     var self = this,
         db = require('./db'),
         cryptools = require('cryptools');
@@ -38,9 +38,8 @@ var userlib = function(){
         };
 
         var CreateAccount = function(){
-            accountSettings.password = cryptools.sha256(accountSettings.password);
-
             var newAccount = db.userAccountModel(accountSettings);
+            newAccount.password = cryptools.sha256(accountSettings.password);
             newAccount.active = true;
 
             newAccount.save(function(err, newAccount){
@@ -80,18 +79,6 @@ var userlib = function(){
 
             });
     };
-
-    self.DeleteUserAccount = function(id, done){
-        db.userAccountModel.findById(id, function(err, account){
-            var found = account !== null;
-            if(found){
-                account.remove();
-            }
-            done(err, found);
-        });
-    };
-
-
 };
 
-module.exports = new userlib();
+module.exports = new userLib();

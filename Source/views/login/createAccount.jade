@@ -1,0 +1,39 @@
+h3 Enter Account Information
+form.form-horizontal(role="form", name="createAccountForm", novalidate)
+    div.form-group
+        label.col-sm-3.control-label Username
+        div.col-sm-9
+            input.form-control(name="username",type="text",placeholder="Enter Username",
+            ng-model="accountDetails.username",required, ng-minlength="5",
+            ng-class="{'alert-warning' : createAccountForm.username.$error.minlength}")
+    div.form-group
+        label.col-sm-3.control-label Password
+        div.col-sm-9
+            input.form-control(name="password",type="password",placeholder="Enter Password",
+            ng-model="accountDetails.password",required, ng-minlength="7",
+            ng-class="{'alert-warning' : createAccountForm.password.$error.minlength}")
+    div.form-group
+        label.col-sm-3.control-label First Name
+        div.col-sm-9
+            input.form-control(name="firstName",type="text",placeholder="Enter First Name",
+            ng-model="accountDetails.firstName",required, ng-minlength="5",
+            ng-class="{'alert-warning' : createAccountForm.firstName.$error.minlength}")
+    div.form-group
+        label.col-sm-3.control-label Last Name
+        div.col-sm-9
+            input.form-control(name="lastName",type="text",placeholder="Enter Last Name",
+            ng-model="accountDetails.lastName",required, ng-minlength="5",
+            ng-class="{'alert-warning' : createAccountForm.lastName.$error.minlength}")
+    div.form-group
+        label.col-sm-3.control-label E-Mail Address
+        div.col-sm-9
+            input.form-control(name="email",type="email",placeholder="Enter E-Mail Address",
+            ng-model="accountDetails.emailAddress" required,
+            ng-class="{'alert-warning' : createAccountForm.email.$error.email}")
+    div.form-group.text-center
+        button.btn.btn-primary(ng-disabled="createAccountForm.$invalid", ng-click="SubmitNewAccountInfo(accountDetails)") Submit
+
+    div.alert(ng-cloak, ng-show="createAccountResponse.show",
+       ng-class = "{'alert-success' : createAccountResponse.success, 'alert-danger' : !createAccountResponse.success}").
+            {{createAccountResponse.message}}
+

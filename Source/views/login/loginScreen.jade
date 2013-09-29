@@ -1,0 +1,16 @@
+div.container(id="loginWrapper",ng-controller='LoginController')
+    div.row
+        div.col-sm-3
+        div.col-sm-6
+            ul.nav.nav-tabs
+                li.active
+                    a(href="#login", data-toggle="tab") Login
+                li
+                    a(href="#CreateAccount", data-toggle="tab") Create Account
+            div.tab-content
+                div.tab-pane.active(id="login")
+                    include unPassEntry
+                div.tab-pane(id="CreateAccount")
+                    include createAccount
+
+script(type='text/javascript', src='/js/loginController.js')

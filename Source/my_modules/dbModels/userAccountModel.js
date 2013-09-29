@@ -2,7 +2,7 @@ var userAccountModel = function(){
     var self = this;
     var mongoose = require('mongoose');
 
-    self.model = mongoose.model('userAccount', {
+    self.model = mongoose.model('UserAccount', {
         username : String,
         password : String,
         firstName : String,

@@ -12,6 +12,7 @@
       "jade": "*",
       "mocha" : "*",
       "mongoose" : "*",
-      "connect-mongo" : "*"
+      "connect-mongo" : "*",
+      "underscore" : "*"
   }
 }

@@ -1,0 +1,19 @@
+h3 Please Login
+form.form-horizontal(role="form")
+    div.form-group
+        label.col-sm-3.control-label Username
+        div.col-sm-9
+            input.form-control(ng-model="loginInfo.username",type="text",placeholder="Enter Username")
+    div.form-group
+        label.col-sm-3.control-label Password
+        div.col-sm-9
+            input.form-control(ng-model="loginInfo.password",type="password",placeholder="Enter Password")
+    div.form-group
+        div.col-sm-4
+        div.col-sm-8.checkbox
+            label
+                input(ng-model="loginInfo.rememberMe", type="checkbox")
+                span Remember Me
+            div.pull-right
+                button.btn.btn-primary(ng-click="attemptLogin()") Log In
+    div.alert.alert-danger(ng-cloak, ng-show="loginResponse.failedLogin") {{loginResponse.failedLoginMessage}}
