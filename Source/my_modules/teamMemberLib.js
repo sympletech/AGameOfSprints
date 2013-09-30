@@ -3,7 +3,9 @@ var teamMemberLib = function(){
         shred = new (require('shred'))(),
         db = require('../database/db'),
         utils = require('./utils'),
-        cryptools = require('cryptools');
+        cryptools = require('cryptools'),
+        fs = require('fs'),
+        _ = require('underscore');
 
     self.GenerateTeamMemberName = function(sex, done){
         shred.get({
@@ -22,12 +24,24 @@ var teamMemberLib = function(){
         });
     };
 
-    self.GenerateTeamMemberCategory = function(done){
-        var catCount = db.teamMemberCategoryModel.count({}, function(err, count){
-            var rand = Math.floor(Math.random() * count);
-            db.teamMemberCategoryModel.findOne().skip(rand).exec(function(err, category){
-                done(err, category._doc);
-            });
+    self.GenerateTeamMemberImage = function(sex, excludeImages, done){
+        var rootPath = __dirname.replace('my_modules', '');
+        var imageDir = rootPath + 'public\\images\\teamMembers\\' + sex;
+
+        fs.readdir(imageDir, function(err, files){
+            var usableFiles = _.without(files, excludeImages.join(","));
+            var count = usableFiles.length;
+            var i = utils.RollDice(0,count - 1);
+
+            var filePath = 'images/teamMembers/' + sex + '/' + usableFiles[i];
+
+            done(filePath);
+        });
+    };
+
+    self.GenerateTeamMemberCategory = function(categoryName, done){
+        db.teamMemberCategoryModel.findOne({name : categoryName}, function(err, category){
+            done(err, category._doc);
         });
     };
 
@@ -48,7 +62,7 @@ var teamMemberLib = function(){
         done(teamMember);
     };
 
-    self.GenerateTeamMember = function(done){
+    self.GenerateTeamMember = function(category, excludeImages, done){
         var teamMember = {};
         var ticks = 'createTime_' + (new Date()).getTime();
         teamMember.generationHash = cryptools.sha256(ticks);
@@ -56,10 +70,15 @@ var teamMemberLib = function(){
 
         self.GenerateTeamMemberName(teamMember.sex, function(name){
             teamMember.name = name;
-            self.GenerateTeamMemberCategory(function(err, category){
-                teamMember.category = category.name;
-                self.GenerateTeamMemberStats(teamMember, category, function(teamMember){
-                    done(err, teamMember);
+
+            self.GenerateTeamMemberImage(teamMember.sex, excludeImages, function(imagePath){
+                teamMember.imagePath = imagePath;
+
+                self.GenerateTeamMemberCategory(category, function(err, category){
+                    teamMember.category = category.name;
+                    self.GenerateTeamMemberStats(teamMember, category, function(teamMember){
+                        done(err, teamMember);
+                    });
                 });
             });
         });
