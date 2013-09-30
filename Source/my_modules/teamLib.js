@@ -1,6 +1,6 @@
 var teamLib = function(){
     var self = this,
-        db = require('./db'),
+        db = require('./../database/db'),
         _ = require('underscore');
 
     self.CreateNewTeam = function(userAccount, teamName, done){

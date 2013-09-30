@@ -1,6 +1,6 @@
 var userLib = function(){
     var self = this,
-        db = require('./db'),
+        db = require('../database/db'),
         cryptools = require('cryptools');
 
     self.CreateAccount = function(accountSettings, done){

@@ -2,7 +2,7 @@ describe('teamLib Tests', function(){
     var teamLib = require('../teamLib'),
         userLib = require('../userLib'),
         assert = require('better-assert'),
-        db = require('../db'),
+        db = require('../../database/db'),
         _ = require('underscore'),
         mocks = require('./mocks');
 
