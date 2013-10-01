@@ -7,19 +7,23 @@ describe('teamLib Tests', function(){
         mocks = require('./mocks');
 
     it('CreateNewTeam Tests', function(done){
-        userLib.CreateAccount(mocks.testUser('Create_Team'), function(err, account, success, message){
+        var newAccount = mocks.testUser('Create_Team');
+        userLib.CreateAccount(newAccount, function(err, account, success, message){
             assert(success === true);
 
             teamLib.CreateNewTeam(account, 'Create_Team', function(err, team, success, message){
                 team.remove();
-                account.remove();
-                done(err);
+                teamLib.DeleteTeam(account._id, newAccount.teamName, function(){
+                    account.remove();
+                    done(err);
+                });
             });
         });
     });
 
     it('AddTeamMember Test', function(done){
-        userLib.CreateAccount(mocks.testUser('Add_Team_Member'), function(err, account, success, message){
+        var newAccount = mocks.testUser('Add_Team_Member');
+        userLib.CreateAccount(newAccount, function(err, account, success, message){
             assert(success === true);
 
             teamLib.CreateNewTeam(account, 'Add_Team_Member', function(err, team, success, message){
@@ -33,8 +37,10 @@ describe('teamLib Tests', function(){
                     assert(memberOnTeam);
 
                     team.remove();
-                    account.remove();
-                    done(err);
+                    teamLib.DeleteTeam(account._id, newAccount.teamName, function(){
+                        account.remove();
+                        done(err);
+                    });
                 });
             });
         });
