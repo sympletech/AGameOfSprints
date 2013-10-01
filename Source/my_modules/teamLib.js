@@ -40,6 +40,17 @@ var teamLib = function(){
         });
     };
 
+    self.DeleteTeam = function(userAccountId, teamName, done){
+        db.teamModel.findOne({
+            userAccountId : userAccountId, name : teamName
+        },function(err, team){
+            if(team !== null){
+                team.remove();
+                done(err);
+            }
+        });
+    };
+
 
     self.AddMemberToTeam = function(team, member, done){
         var success = false,

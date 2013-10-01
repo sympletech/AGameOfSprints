@@ -1,4 +1,4 @@
-function LoginController($scope, $http, $rootScope){
+function LoginCtrl($scope, $http, $rootScope){
 
     //Login Info Section
     //**********************************************
@@ -29,6 +29,7 @@ function LoginController($scope, $http, $rootScope){
     //Create Account Section
     //**********************************************
     $scope.accountDetails = {
+        teamName : '',
         username : '',
         password : '',
         firstName : '',

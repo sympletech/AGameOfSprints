@@ -1,7 +1,8 @@
 var userLib = function(){
     var self = this,
         db = require('../database/db'),
-        cryptools = require('cryptools');
+        cryptools = require('cryptools'),
+        teamLib = require('./teamLib');
 
     self.CreateAccount = function(accountSettings, done){
         var success = false,
@@ -43,7 +44,9 @@ var userLib = function(){
             newAccount.active = true;
 
             newAccount.save(function(err, newAccount){
-                done(err, newAccount, true, 'Account Created Successfully');
+                teamLib.CreateNewTeam(newAccount, accountSettings.teamName, function(){
+                    done(err, newAccount, true, 'Account Created Successfully');
+                });
             });
         }
 

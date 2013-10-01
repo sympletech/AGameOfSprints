@@ -9,10 +9,11 @@ var routes = function () {
         app.RegisterPage('/visitor/rules', 'rules');
 
         app.RegisterPage('/projectStatus', 'projectStatus', true);
-        app.RegisterPage('/teamRoom', 'teamRoom/teamRoom', true);
+
 
         require('./loginRoutes')(app);
         require('./sessionRoutes')(app);
+        require('./teamRoomRoutes')(app);
     };
 
 

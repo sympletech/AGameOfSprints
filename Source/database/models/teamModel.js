@@ -6,7 +6,8 @@ var teamModel = function(){
     self.model = mongoose.model('Team', {
         userAccountId : { type : Schema.Types.ObjectId, ref : 'UserAccount'},
         name : String,
-        teamMembers : []
+        teamMembers : [],
+        skillsLab : []
     });
 
 

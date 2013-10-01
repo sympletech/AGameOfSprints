@@ -1,6 +1,7 @@
 var mocks = {
     testUser : function(name){
         return{
+            teamName : name + '_teamName',
             username : name,
             password : name + '_password',
             firstName : name + '_first',

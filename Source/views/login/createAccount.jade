@@ -6,6 +6,11 @@ form.form-horizontal(role="form", name="createAccountForm", novalidate)
             input.form-control(name="username",type="text",placeholder="Enter Username",
             ng-model="accountDetails.username",required, ng-minlength="5",
             ng-class="{'alert-warning' : createAccountForm.username.$error.minlength}")
+    label.col-sm-3.control-label Team Name
+    div.col-sm-9
+        input.form-control(name="teamName",type="text",placeholder="Enter Team Name",
+        ng-model="accountDetails.teamName",required, ng-minlength="5",
+        ng-class="{'alert-warning' : createAccountForm.teamName.$error.minlength}")
     div.form-group
         label.col-sm-3.control-label Password
         div.col-sm-9

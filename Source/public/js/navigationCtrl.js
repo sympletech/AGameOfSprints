@@ -1,4 +1,4 @@
-function NavigationController($scope, $http, $location, $rootScope){
+function NavigationCtrl($scope, $http, $location){
 
     $scope.navigationOptions = [];
     $scope.currentUser = {};
