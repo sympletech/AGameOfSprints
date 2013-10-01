@@ -1,10 +1,10 @@
 div.panel.panel-primary
     div.panel-heading
-        Please Select A Team Member
+        Please Select A Team Member {{hello}}
     div.panel-body
         div.row
             div.col-sm-12
-                img.col-sm-12(src="images/circle_plus.png")
+                img.col-sm-12(src="images/circle_plus.png", ng-click="addTeamMember()", data-toggle="modal", href="#teamMemberSelectModal")
                 br
                 br
                 br

@@ -49,12 +49,11 @@ function LoginCtrl($scope, $http, $rootScope){
             $scope.createAccountResponse.success = data.success;
             $scope.createAccountResponse.message = data.message;
             $scope.createAccountResponse.message = data.message;
+
+            $scope.loginInfo.username = $scope.accountDetails.username;
+            $scope.loginInfo.password = $scope.accountDetails.password;
+            $scope.loginInfo.rememberMe = true;
+            $scope.attemptLogin();
         });
     };
 }
-
-
-//Register Controller
-angular.element('#loginWrapper').ready(function(){
-    angular.bootstrap('#loginWrapper', ['messaging']);
-});

@@ -7,7 +7,10 @@ var teamModel = function(){
         userAccountId : { type : Schema.Types.ObjectId, ref : 'UserAccount'},
         name : String,
         teamMembers : [],
-        skillsLab : []
+        skillsLab : [],
+        createdOn : Date,
+        retired : Boolean,
+        retiredOn : Date
     });
 
 

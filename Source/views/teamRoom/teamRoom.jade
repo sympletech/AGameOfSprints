@@ -1,17 +1,32 @@
-div.row
+div.row(id="team-room-wrapper", ng-controller='teamRoomCtrl')
     div.col-md-6
         div.row
+            - for (var i = 0; i < 2; ++i) {
             div.col-sm-6
-                include teamMember
-            div.col-sm-6
-                include teamMember
+                div(ng-show="teamMembers[#{i}]._id == null")
+                    include teamMemberEmpty
+                div(ng-show="teamMembers[#{i}]._id != null")
+                    include teamMember
+            - }
         div.row
+            - for (var i = 2; i < 4; ++i) {
             div.col-sm-6
-                include teamMember
-            div.col-sm-6
-                include teamMemberEmpty
+                div(ng-show="teamMembers[#{i}]._id == null")
+                    include teamMemberEmpty
+                div(ng-show="teamMembers[#{i}]._id != null")
+                    include teamMember
+            - }
+    include teamMemberSelect
+
     div.col-md-6
         div.row
             div.col-sm-12
                 include teamSkillsLab
+
+
+//Register Controller
+script .
+    angular.element('#team-room-wrapper').ready(function(){
+        angular.bootstrap('#team-room-wrapper');
+    });
 

@@ -26,12 +26,21 @@ html(ng-app, ng-controller='NavigationCtrl')
         div(ng-bind-html-unsafe='currentPageContent')
 
 
-    script(type='text/javascript', src='/libraries/jquery/jquery-2.0.3.min.js')
-    script(type='text/javascript', src='/libraries/underscore/underscore-min.js')
-    script(type='text/javascript', src='/libraries/angular/angular.min.js')
-    script(type='text/javascript', src='/libraries/pubSub/MessagingServices.js')
-    script(type='text/javascript', src='/libraries/bootstrap/js/bootstrap.min.js')
-    script(type='text/javascript', src='/libraries/amplify/amplify.min.js')
+    script(type='text/javascript', src='libraries/jquery/jquery-2.0.3.min.js')
+    script(type='text/javascript', src='libraries/underscore/underscore-min.js')
+    script(type='text/javascript', src='libraries/angular/angular.min.js')
+    script(type='text/javascript', src='libraries/pubSub/MessagingServices.js')
+    script(type='text/javascript', src='libraries/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='libraries/amplify/amplify.min.js')
 
-    script(type='text/javascript', src='/js/global.js')
-    script(type='text/javascript', src='/js/navigationCtrl.js')
+    //Global App Level
+    script(type='text/javascript', src='js/global.js')
+    script(type='text/javascript', src='js/navigationCtrl.js')
+
+    //Login Screen
+    script(type='text/javascript', src='js/login/loginCtrl.js')
+
+    //Team Room
+    script(src='js/teamRoom/teamRoom.ui.js')
+    script(src='js/teamRoom/teamRoomCtrl.js')
+    script(src='js/teamRoom/teamMemberSelectCtrl.js')

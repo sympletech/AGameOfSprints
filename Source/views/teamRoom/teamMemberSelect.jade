@@ -1,0 +1,15 @@
+div(id="team-member-select-wrapper", ng-controller='teamMemberSelectCtl')
+    div.modal.fade(id="teamMemberSelectModal",tabindex="-1",role="dialog",aria-labelledby="myModalLabel", aria-hidden="true")
+        div.modal-dialog
+            div.modal-content(style="width:1200px;")
+                div.modal-header
+                    button.close(type="button", data-dismiss="modal", aria-hidden="true") &times;
+                    h4 Select Candidate To Hire
+                div.modal-body
+                    div.row
+                        div.col-sm-4
+                            select(ng-model="currentCandidateType", ng-options="c for ct in candidateTypes")
+                                option
+                    div.row
+                        div.col-sm-4(ng-repeat="teamMember in candidates")
+                            include teamMember

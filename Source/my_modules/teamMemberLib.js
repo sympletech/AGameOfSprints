@@ -82,6 +82,39 @@ var teamMemberLib = function(){
                 });
             });
         });
+    };
+
+
+    self.GetTeamMemberCategoryNames = function(done){
+        db.teamMemberCategoryModel.find({})
+            .select('name')
+            .exec(function(err, categories){
+                var catNames = _.map(categories, function(c){
+                    return c._doc.name;
+                });
+                done(err, catNames);
+        });
+    };
+
+    self.GetCandidates = function(category, done){
+        var excludeImages = [],
+            canidates = [];
+
+        var generateCandidates = function(done){
+            self.GenerateTeamMember(category, excludeImages, function(err, teamMember){
+                var img = _.last(teamMember.imagePath.split('/'));
+                excludeImages.push(img);
+                canidates.push(teamMember);
+                done();
+            });
+        };
+        generateCandidates(function(){
+            generateCandidates(function(){
+                generateCandidates(function(){
+                    done(canidates);
+                });
+            });
+        });
 
     };
 };

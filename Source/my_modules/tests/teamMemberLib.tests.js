@@ -47,4 +47,18 @@ describe('teamLib Tests', function(){
             done();
         });
     });
+
+    it("GetTeamMemberCategoryNames Test", function(done){
+        teamMemberLib.GetTeamMemberCategoryNames(function(err, categories){
+            assert(categories.length != 0);
+            done();
+        });
+    });
+
+    it("GetCandidates Test", function(done){
+        teamMemberLib.GetCandidates('QA Tester', function(candidates){
+            assert(candidates.length === 3);
+            done();
+        });
+    });
 });

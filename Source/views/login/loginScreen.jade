@@ -13,4 +13,10 @@ div.container(id="loginWrapper",ng-controller='LoginCtrl')
                 div.tab-pane(id="CreateAccount")
                     include createAccount
 
-script(type='text/javascript', src='/js/loginCtrl.js')
+
+
+//Register Controller
+script .
+    angular.element('#loginWrapper').ready(function(){
+        angular.bootstrap('#loginWrapper');
+    });

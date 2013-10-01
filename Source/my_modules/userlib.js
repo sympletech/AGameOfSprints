@@ -63,8 +63,9 @@ var userLib = function(){
         var accountLookup = db.userAccountModel
             .findOne({
                 'username' : username,
-                'active'   : true},
-            function(err, account){
+                'active'   : true})
+            .select('_id username firstName lastName password')
+            .exec(function(err, account){
                 var message = '',
                     success = false,
                     accountExists = account != null;
@@ -77,7 +78,7 @@ var userLib = function(){
                         message = 'Invalid Password';
                     }
                 }
-
+                account.password = '';
                 done(err, success, message, account);
 
             });

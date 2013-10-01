@@ -1,6 +1,9 @@
 var global = {
     event : {
         userLoggedIn : 'userLoggedIn',
-        userSessionStateChanged : 'userSessionStateChanged'
+        userSessionStateChanged : 'userSessionStateChanged',
+        teamRoom : {
+            showAddTeamMember : 'showAddTeamMember'
+        }
     }
 };

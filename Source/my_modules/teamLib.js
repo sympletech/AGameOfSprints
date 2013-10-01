@@ -3,6 +3,13 @@ var teamLib = function(){
         db = require('./../database/db'),
         _ = require('underscore');
 
+    self.GetActiveTeamForUser = function(userAccountId, done){
+        db.teamModel.findOne({userAccountId : userAccountId, retired : false}, function(err, team){
+            done(err, team);
+        });
+    };
+
+
     self.CreateNewTeam = function(userAccount, teamName, done){
         var success = false,
             message = '';
@@ -25,7 +32,9 @@ var teamLib = function(){
         var CreateTeam = function(){
             var newTeam = db.teamModel({
                 userAccountId: userAccount._id,
-                name : teamName
+                name : teamName,
+                createdOn : Date.now(),
+                retired : false
             });
 
             newTeam.save(function(err, newTeam){

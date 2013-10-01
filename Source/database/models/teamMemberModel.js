@@ -20,6 +20,12 @@ var teamMemberModel = function(){
             uiUx : Number,
             findBugs : Number,
             testing : Number
+        },
+        stats : {
+            happinessLevel : Number,
+            stressLevel : Number,
+            storiesCompleted : Number,
+            specialSkills : Number
         }
     });
 };
