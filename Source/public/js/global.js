@@ -3,7 +3,8 @@ var global = {
         userLoggedIn : 'userLoggedIn',
         userSessionStateChanged : 'userSessionStateChanged',
         teamRoom : {
-            showAddTeamMember : 'showAddTeamMember'
+            showAddTeamMember : 'showAddTeamMember',
+            memberAdded : 'memberAdded'
         }
     }
 };

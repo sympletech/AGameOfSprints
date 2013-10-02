@@ -78,7 +78,7 @@ var teamLib = function(){
         };
 
         var CheckToEnsureTeamIsNotFull = function(nextStep){
-            if(team.teamMembers.length > 5){
+            if(team.teamMembers.length > 4){
                 message = "Your Team Is Already At Capacity";
                 done(err, team, success, message);
             }else{
@@ -87,7 +87,8 @@ var teamLib = function(){
         };
 
         var AddMember = function(){
-            team.teamMembers.push(member);
+            var newMember = db.teamMemberModel(member);
+            team.teamMembers.push(newMember);
             team.save(function(err, updatedTeam){
                 success = err === null;
                 message = success ? 'Member added successfully.' : 'There Was an error adding member';

@@ -8,8 +8,8 @@ div(id="team-member-select-wrapper", ng-controller='teamMemberSelectCtl')
                 div.modal-body
                     div.row
                         div.col-sm-4
-                            select(ng-model="currentCandidateType", ng-options="c for ct in candidateTypes")
-                                option
+                            select(ng-model="currentCandidateType", ng-options="cType for cType in candidateTypes")
                     div.row
                         div.col-sm-4(ng-repeat="teamMember in candidates")
                             include teamMember
+                            button.btn.btn-primary(ng-click="hire(teamMember)") Hire Candidate

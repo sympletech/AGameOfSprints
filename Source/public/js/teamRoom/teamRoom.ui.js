@@ -1,3 +1,3 @@
-amplify.subscribe(global.event.teamRoom.showAddTeamMember, function(){
-
+amplify.subscribe(global.event.teamRoom.memberAdded, function(){
+    $("#teamMemberSelectModal").modal('hide');
 });

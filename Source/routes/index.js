@@ -18,7 +18,6 @@ var routes = function () {
 
 
     self.DefineRoutingTemplates = function (app) {
-
         app.RegisterPage = function (path, viewname, secured) {
             app.get(path, function (req, res) {
                 if(secured && !req.session.currentUser){
@@ -31,30 +30,35 @@ var routes = function () {
 
         app.RegisterRestEndPoint = function (endpointConfig) {
 
-            app.get(endpointConfig.path, function (req, res) {
-                if(endpointConfig.get)
-                    endpointConfig.get(req, res);
-            });
+            if(endpointConfig.get){
+                app.get(endpointConfig.path, function (req, res) {
+                        endpointConfig.get(req, res);
+                });
+            }
 
-            app.get(endpointConfig.path + '/:id', function (req, res) {
-                if(endpointConfig.getOne)
-                    endpointConfig.getOne(req.params.id, req, res);
-            });
+            if(endpointConfig.getOne){
+                app.get(endpointConfig.path + '/:id', function (req, res) {
+                        endpointConfig.getOne(req.params.id, req, res);
+                });
+            }
 
-            app.put(endpointConfig.path, function (req, res) {
-                if(endpointConfig.put)
-                    endpointConfig.put(req, res);
-            });
+            if(endpointConfig.put){
+                app.put(endpointConfig.path, function (req, res) {
+                        endpointConfig.put(req, res);
+                });
+            }
 
-            app.post(endpointConfig.path, function (req, res) {
-                if(endpointConfig.post)
-                    endpointConfig.post(req, res);
-            });
+            if(endpointConfig.post){
+                app.post(endpointConfig.path, function (req, res) {
+                        endpointConfig.post(req, res);
+                });
+            }
 
-            app.delete(endpointConfig.path, function (req, res) {
-                if(endpointConfig.delete)
-                    endpointConfig.delete(req, res);
-            });
+            if(endpointConfig.delete){
+                app.delete(endpointConfig.path, function (req, res) {
+                        endpointConfig.delete(req, res);
+                });
+            }
         };
 
     };
