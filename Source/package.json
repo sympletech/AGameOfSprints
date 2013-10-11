@@ -8,7 +8,7 @@
   "dependencies": {
       "better-assert" : "*",
       "cryptools" : "*",
-      "express": "3.4.0",
+      "express": "*",
       "jade": "*",
       "mocha" : "*",
       "mongoose" : "*",
